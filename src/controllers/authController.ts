@@ -28,7 +28,8 @@ export const login = async (req: Request, res: Response) => {
       if (count) {
         user.loginUntil = new Date();
         user.loginAttempts = count;
-        if (count > 3) {
+        // maximum of 3 attempts within 5 minutes
+        if (count >= 3) {
           user.isEnable = false;
         }
       } else {
@@ -62,7 +63,7 @@ export const login = async (req: Request, res: Response) => {
     });
   } catch (error) {
     return res
-      .status(400)
+      .status(500)
       .json({ status: "error", message: "Internal Server Error" });
   }
 };

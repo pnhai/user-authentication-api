@@ -1,10 +1,10 @@
+import * as dotenv from "dotenv";
+dotenv.config();
 import express, { Application, Request, Response, NextFunction } from "express";
 import bodyParser from "body-parser";
 import routes from "./routes";
-import { MONGO_URL, PORT } from "./config/env";
 
-import * as dotenv from "dotenv";
-dotenv.config();
+import { MONGO_URL, PORT } from "./config/env";
 
 // Database
 import connect from "./config/connect";
@@ -29,18 +29,6 @@ app.use(function (req, res, next) {
 
 app.get("/", (_, res) => res.send("API server is running"));
 
-app.use(
-  "/",
-  function (req: Request, res: Response, next) {
-    // const forwarded =
-    //   req.headers["x-real-ip"] ||
-    //   req.connection?.remoteAddress?.replace(/:|f/g, "");
-
-    // req.forwarded = forwarded;
-
-    next();
-  },
-  routes
-);
+app.use("/", routes);
 // server
 app.listen(PORT, () => console.log(`Server Running on port ${PORT}`));

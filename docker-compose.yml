@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  app:
+    image: user-auth
+    build: ./
+    depends_on:
+      - mongo
+    ports:
+      - "7400:7400"
+    environment:
+      - MONGO_URL=mongodb://mongo/user-authentication
+      - PORT=7400
+  mongo:
+    image: mongo:5.0.6
+    container_name: mongo-user-auth
+    restart: always
+    environment:
+      - MONGO_INITDB_DATABASE=user-authentication
+    ports:
+      - "7401:27017"
