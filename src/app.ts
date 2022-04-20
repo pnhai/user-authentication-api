@@ -32,3 +32,5 @@ app.get("/", (_, res) => res.send("API server is running"));
 app.use("/", routes);
 // server
 app.listen(PORT, () => console.log(`Server Running on port ${PORT}`));
+
+export default app;

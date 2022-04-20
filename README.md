@@ -19,7 +19,13 @@ $ npm i && npm start
 $ docker-compose up
 ```
 
-#### 3. Test login API
+#### 4. Run unit test
+
+```
+$ npm test
+```
+
+#### 5. Test apis
 
 ```
 url: localhost:7400/auth/login
